@@ -1,54 +1,66 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>PK IMM H. AGUS SALIM</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Love Hologram</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <header class="hero">
-    <div class="overlay"></div>
-    <div class="hero-content">
-      <h1>PK IMM H. AGUS SALIM</h1>
-      <p>Bersama, Berkarya, Berkontribusi</p>
-      <nav>
-        <a href="index.html" class="active">Beranda</a>
-        <a href="anggota.html">Anggota</a>
-      </nav>
+
+  <div class="screen active" id="loginScreen">
+    <div class="login-box">
+      <h1>Masukkan Sandi</h1>
+
+      <input type="password" id="passwordInput" placeholder="Masukkan sandi..." />
+
+      <button onclick="checkPassword()">Buka</button>
+
+      <p id="errorText"></p>
     </div>
-  </header>
+  </div>
 
-  <main>
-    <section class="about">
-      <h2>Tentang Kami</h2>
-      <p>
-        <strong>PK IMM H. AGUS SALIM</strong> adalah organisasi IMM yang berada di Fakultas Ushuluddin dan Studi Agama yang terletak di UIN IMAM BONJOL PADANG. Ikatan Mahasiswa Muhammadiyah atau IMM merupakan organisasi otonom di bawah naungan persyarikatan Muhammadiyah yang diperuntukan di kalangan/ jenjang mahasiswa baik di Perguruan Tinggi Muhammadiyah itu sendiri maupun di universitas swasta dan negeri lainnya.
-      </p>
-    </section>
+  <div class="screen" id="hologramScreen">
 
-    <section class="info">
-      <h2>Informasi Utama</h2>
-      <div class="info-cards">
-        <div class="card">
-          <h3>Berlokasi</h3>
-          <p>Fakultas Ushuluddin dan Studi Agama</p>
-        </div>
-        <div class="card">
-          <h3>Logo</h3>
-          <img src="logo pk imm.png" alt="logo 2" width="300" height="auto">
-          <p></p>
-        </div>
-        <div class="card">
-          <h3>Fokus</h3>
-          <p>Pendidikan, Sosial, Teknologi</p>
-        </div>
+    <div class="stars"></div>
+
+    <div id="heartContainer">
+      <div class="heart"></div>
+    </div>
+
+    <div id="loveContent">
+
+      <h1>I love you fita</h1>
+
+      <div class="photo-gallery">
+        <img src="foto 1.jpg" alt="Foto 1">
+        <img src="foto 2.jpg" alt="Foto 2">
       </div>
-    </section>
-  </main>
-  
-  <footer>
-    <p>&copy; 2025 PK IMM H. AGUS SALIM. Semua Hak Cipta Dilindungi.</p>
-  </footer>
+
+    </div>
+
+  </div>
+
+<script>
+  function checkPassword() {
+    const password = document.getElementById("passwordInput").value;
+    const errorText = document.getElementById("errorText");
+
+    if(password === "SAYANG") {
+
+      document.getElementById("loginScreen").classList.remove("active");
+      document.getElementById("hologramScreen").classList.add("active");
+
+      setTimeout(() => {
+        document.getElementById("heartContainer").style.display = "none";
+        document.getElementById("loveContent").style.display = "flex";
+      }, 5000);
+
+    } else {
+      errorText.innerText = "Sandi salah!";
+    }
+  }
+</script>
+
 </body>
 </html>
