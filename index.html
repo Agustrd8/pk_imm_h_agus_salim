@@ -3,63 +3,109 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Love Hologram</title>
+  <title>Love Website</title>
+
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
-  <div class="screen active" id="loginScreen">
-    <div class="login-box">
-      <h1>Masukkan Sandi</h1>
+<div class="rain" id="rain"></div>
 
-      <input type="password" id="passwordInput" placeholder="Masukkan sandi..." />
+<div class="page active" id="page1">
+    <h1>Masukkan Sandi 💖</h1>
 
-      <button onclick="checkPassword()">Buka</button>
+    <input type="password" id="password" placeholder="Masukkan sandi">
 
-      <p id="errorText"></p>
+    <button onclick="checkPassword()">Masuk</button>
+</div>
+
+<div class="page" id="page2">
+    <h1>kamu sayang aku? 🥺</h1>
+
+    <div>
+        <button id="moveBtn1">iyaa</button>
+        <button onclick="nextPage(3)">iyaa bangett</button>
     </div>
-  </div>
+</div>
 
-  <div class="screen" id="hologramScreen">
+<div class="page" id="page3">
+    <h1>apa yang membuat kamu suka aku? 😆</h1>
 
-    <div class="stars"></div>
-
-    <div id="heartContainer">
-      <div class="heart"></div>
+    <div>
+        <button id="moveBtn2">ganteng</button>
+        <button onclick="nextPage(4)">ganteng bangett</button>
     </div>
+</div>
 
-    <div id="loveContent">
-
-      <h1>I love you fita</h1>
-
-      <div class="photo-gallery">
-        <img src="foto 1.jpg" alt="Foto 1">
-        <img src="foto 2.jpg" alt="Foto 2">
-      </div>
-
+<div class="page" id="page4">
+    <div class="final-text">
+        i love youu sayanggg kuuuu fitaa 💖
     </div>
-
-  </div>
+</div>
 
 <script>
-  function checkPassword() {
-    const password = document.getElementById("passwordInput").value;
-    const errorText = document.getElementById("errorText");
 
-    if(password === "SAYANG") {
+function checkPassword(){
+    const pass = document.getElementById("password").value;
 
-      document.getElementById("loginScreen").classList.remove("active");
-      document.getElementById("hologramScreen").classList.add("active");
-
-      setTimeout(() => {
-        document.getElementById("heartContainer").style.display = "none";
-        document.getElementById("loveContent").style.display = "flex";
-      }, 5000);
-
-    } else {
-      errorText.innerText = "Sandi salah!";
+    if(pass === "SAYANG"){
+        nextPage(2);
+    }else{
+        alert("Sandi salah 😭");
     }
-  }
+}
+
+function nextPage(pageNumber){
+    document.querySelectorAll(".page").forEach(page=>{
+        page.classList.remove("active");
+    });
+
+    document.getElementById("page"+pageNumber).classList.add("active");
+}
+
+function moveButton(btnId){
+    const btn = document.getElementById(btnId);
+
+    btn.addEventListener("mouseover", ()=>{
+
+        const x = Math.random() * (window.innerWidth - 150);
+        const y = Math.random() * (window.innerHeight - 100);
+
+        btn.style.position = "absolute";
+        btn.style.left = x + "px";
+        btn.style.top = y + "px";
+    });
+}
+
+moveButton("moveBtn1");
+moveButton("moveBtn2");
+
+
+const rain = document.getElementById("rain");
+
+const photos = [
+    "foto 1.jpg",
+    "foto 2.jpg"
+];
+
+for(let i=0; i<30; i++){
+
+    const img = document.createElement("img");
+
+    img.src = photos[Math.floor(Math.random()*photos.length)];
+
+    img.style.left = Math.random()*100 + "vw";
+
+    img.style.animationDuration = (5 + Math.random()*5) + "s";
+
+    img.style.animationDelay = Math.random()*5 + "s";
+
+    img.style.width = (60 + Math.random()*40) + "px";
+    img.style.height = img.style.width;
+
+    rain.appendChild(img);
+}
 </script>
 
 </body>
